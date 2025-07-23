@@ -4,9 +4,7 @@
 Overview / Install
 ==================
 
-PyDriller is a Python framework that helps developers on mining software repositories. With PyDriller you can easily extract information from any Git repository, such as commits, developers, modifications, diffs, and source codes, and quickly export CSV files.
-
-.. image:: mygif.*
+VulGuard is a unified tool for evaluating Just-In-Time Vulnerability Prediction Models.
 
 Requirements
 ============
@@ -17,60 +15,71 @@ Requirements
 .. _Python: https://www.python.org
 .. _Git: https://git-scm.com/
 
-Installing PyDriller
+Installing VulGuard
 ====================
 
-Installing PyDriller is easily done using `pip`_. Assuming it is installed, just run the following from the command-line:
+Via Docker (RECOMMENDED)
+=========================
 
-.. _pip: https://pip.pypa.io/en/latest/installing.html
+.. code-block:: bash
 
-.. sourcecode:: none
+   docker compose up --build -d
+   docker exec -it vulguard /bin/bash
 
-    # pip install pydriller
+Inside docker container:
 
+.. code-block:: bash
 
-This command will download the latest version of GitPython from the
-`Python Package Index <http://pypi.python.org/pypi/GitPython>`_ and install it
-to your system. This will also install the necessary dependencies.
+   python setup.py develop
 
+If you want Docker container to access GPU(s), please download ``nvidia-container-toolkit``
 
-Source Code
-===========
+**Note**: download this outside of the container
 
-PyDriller's git repo is available on GitHub, which can be browsed at:
+Install the ``nvidia-container-toolkit`` package as per official documentation at Github.
 
- * https://github.com/ishepard/pydriller
+We also provide a `quick-run script <scripts/setup_nvidia_container_toolkit.sh>`_ for Debian-based OS.
 
-and cloned using::
+From Scratch
+============
 
-    $ git clone https://github.com/ishepard/pydriller
-    $ cd pydriller
+SrcML
+-----
 
-Optionally (but suggested), make use of virtualenv::
-    
-    $ virtualenv -p python3 venv
-    $ source venv/bin/activate
+.. code-block:: bash
 
-Install the requirements::
-    
-    $ pip install -r requirements.txt
-    $ pip install -r test-requirements.txt
-    $ unzip test-repos.zip
+   # Install libarchive13 libcurl4 libxml2
+   sudo apt-get install libarchive13 libcurl4 libxml2
 
-and run the tests using pytest::
+   # Install libssl
+   wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
+   dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
+   rm -rf libssl1.1_1.1.1f-1ubuntu2_amd64.deb
 
-    $ pytest
+   # Install SrcML
+   wget http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb && \
+   dpkg -i srcml_1.0.0-1_ubuntu20.04.deb && \
+   rm -rf srcml_1.0.0-1_ubuntu20.04.deb
 
-How to cite PyDriller
+Dependencies
+------------
+
+.. code-block:: bash
+
+   pip install -r requirements.txt
+
+Setup VulGuard
+--------------
+
+.. code-block:: bash
+
+   python setup.py develop
+
+How to cite VulGuard
 =====================
 
 .. sourcecode:: none
 
-    @inbook{PyDriller,
-        title = "PyDriller: Python Framework for Mining Software Repositories",
-        abstract = "Software repositories contain historical and valuable information about the overall development of software systems. Mining software repositories (MSR) is nowadays considered one of the most interesting growing fields within software engineering. MSR focuses on extracting and analyzing data available in software repositories to uncover interesting, useful, and actionable information about the system. Even though MSR plays an important role in software engineering research, few tools have been created and made public to support developers in extracting information from Git repository. In this paper, we present PyDriller, a Python Framework that eases the process of mining Git. We compare our tool against the state-of-the-art Python Framework GitPython, demonstrating that PyDriller can achieve the same results with, on average, 50% less LOC and significantly lower complexity.URL: https://github.com/ishepard/pydrillerMaterials: https://doi.org/10.5281/zenodo.1327363Pre-print: https://doi.org/10.5281/zenodo.1327411",
-        author = "Spadini, Davide and Aniche, Maurício and Bacchelli, Alberto",
-        year = "2018",
-        doi = "10.1145/3236024.3264598",
-        booktitle = "The 26th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE)",
+    @inbook{VulGuard,
+        title = 
     }

@@ -1,0 +1,19 @@
+[project]
+name = "VulGuard"
+version = "0.1.0"
+description = "VulGuard, An Unified Tool for Evaluating Just-In-Time Vulnerability Prediction Models."
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [{ name = "duongnd", email = "duong.nd215336@sis.hust.edu.vn" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/AI4Code-HUST/VulGuard"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
